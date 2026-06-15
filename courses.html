@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Course Demos · Tabatha Hill</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--sky:#dff2f8;--navy:#2323b0;--cobalt:#4444e8;--lime:#c5f580;--white:#fff;--mid:#3d3d6b;--border:rgba(35,35,176,0.12);--lime-dark:#8abf3a}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--sky);color:var(--navy);-webkit-font-smoothing:antialiased}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.stagger-1{transition-delay:0.1s}.stagger-2{transition-delay:0.2s}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;background:rgba(223,242,248,0.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand-mark{width:36px;height:36px;border-radius:10px;background:var(--navy);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;flex-shrink:0;transition:background 0.2s}
+.brand-mark::after{content:'';position:absolute;bottom:0;right:0;width:11px;height:11px;background:var(--lime);border-radius:5px 0 0 0}
+.brand-mark span{font-size:13px;font-weight:800;color:#fff;position:relative;z-index:1}
+.brand:hover .brand-mark{background:var(--cobalt)}
+.brand-name{font-size:14px;font-weight:700;color:var(--navy)}
+.back-btn{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:var(--mid);text-decoration:none;padding:7px 14px;border-radius:8px;border:1.5px solid var(--border);transition:all 0.15s}
+.back-btn:hover{border-color:var(--navy);color:var(--navy)}
+.back-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+.page-hero{padding:110px 2.5rem 4rem;max-width:1100px;margin:0 auto}
+.page-eyebrow{font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--cobalt);margin-bottom:0.75rem;display:flex;align-items:center;gap:10px}
+.page-eyebrow::before{content:'';width:20px;height:2px;background:var(--cobalt);border-radius:2px;display:block}
+.page-title{font-size:clamp(2.5rem,5vw,4rem);font-weight:800;letter-spacing:-0.03em;line-height:1.05;color:var(--navy);margin-bottom:1rem;position:relative;z-index:1}
+.page-title .hl{position:relative;display:inline;}
+.page-title .hl::before{content:'';position:absolute;left:-6px;right:-6px;top:4px;bottom:0;background:var(--lime);border-radius:8px;z-index:-1}
+.page-title .hl span{position:relative;z-index:2;color:var(--navy)}
+.page-sub{font-size:17px;font-weight:400;color:var(--mid);line-height:1.75;max-width:560px}
+
+.section{padding:0 2.5rem 5rem;max-width:1100px;margin:0 auto}
+.section-label{font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--cobalt);margin-bottom:1.5rem;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border);padding-bottom:1rem}
+.section-label::before{content:'';width:16px;height:2px;background:var(--cobalt);border-radius:2px;display:block}
+
+/* VIDEO CARDS */
+.video-list{display:flex;flex-direction:column;gap:2rem}
+.video-card{background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:transform 0.2s,box-shadow 0.2s}
+.video-card:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(35,35,176,0.1)}
+
+.video-embed-wrap{
+  position:relative;width:100%;padding-bottom:56.25%;
+  background:var(--navy);
+}
+.video-embed-wrap iframe{
+  position:absolute;top:0;left:0;width:100%;height:100%;
+  border:none;
+}
+
+.video-body{padding:2rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:start}
+.video-type{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--cobalt);margin-bottom:0.5rem}
+.video-title{font-size:1.3rem;font-weight:800;color:var(--navy);letter-spacing:-0.02em;margin-bottom:0.75rem;line-height:1.25}
+.video-desc{font-size:14px;font-weight:400;color:var(--mid);line-height:1.75;margin-bottom:1.25rem}
+.video-tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:10px;font-weight:600;letter-spacing:0.05em;padding:4px 10px;border-radius:100px;border:1px solid var(--border);color:var(--mid);background:var(--sky)}
+.video-stat{
+  flex-shrink:0;
+  background:var(--sky);border:1px solid var(--border);border-radius:12px;
+  padding:1.25rem 1.5rem;text-align:center;min-width:140px;
+}
+.video-stat-num{font-size:1.8rem;font-weight:800;color:var(--cobalt);letter-spacing:-0.03em;line-height:1;margin-bottom:4px}
+.video-stat-label{font-size:11px;font-weight:500;color:var(--mid);line-height:1.4}
+
+/* PAGE FOOTER */
+.page-footer{background:var(--navy);padding:1.5rem 2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.pf-left{font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:0.08em;font-family:'Space Mono',monospace;text-transform:uppercase}
+.pf-links{display:flex;gap:12px}
+.pf-link{font-size:13px;font-weight:600;color:rgba(255,255,255,0.5);text-decoration:none;display:flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);transition:all 0.15s}
+.pf-link:hover{background:rgba(255,255,255,0.08);color:#fff}
+.pf-link svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+@media(max-width:768px){
+  nav{padding:0 1.25rem}
+  .page-hero,.section{padding-left:1.25rem;padding-right:1.25rem}
+  .video-body{grid-template-columns:1fr}
+  .video-stat{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="brand" href="index.html"><div class="brand-mark"><span>TH</span></div><span class="brand-name">Tabatha Hill</span></a>
+  <a class="back-btn" href="index.html"><svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>Back to portfolio</a>
+</nav>
+
+<div class="page-hero">
+  <p class="page-eyebrow reveal">eLearning development</p>
+  <h1 class="page-title reveal">Course <span class="hl"><span>Demos</span></span></h1>
+  <p class="page-sub reveal stagger-1">Sample course recordings showcasing eLearning design, interaction patterns, and instructional approach across different learning contexts.</p>
+</div>
+
+<div class="section">
+  <p class="section-label">Video demos</p>
+  <div class="video-list">
+
+    <div class="video-card reveal">
+      <div class="video-embed-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/Fz8VMwNJRjk"
+          title="Course Demo 1"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="video-body">
+        <div>
+          <div class="video-type">Course Demo · 01</div>
+          <div class="video-title">eLearning Course Walkthrough</div>
+          <p class="video-desc">A walkthrough of an eLearning course demonstrating interaction design, visual storytelling, and scenario-based learning — showing how content structure, pacing, and learner engagement are built into the experience from the ground up.</p>
+          <div class="video-tags">
+            <span class="tag">eLearning</span>
+            <span class="tag">Interaction Design</span>
+            <span class="tag">Scenario-Based</span>
+            <span class="tag">Visual Design</span>
+          </div>
+        </div>
+        <div class="video-stat">
+          <div class="video-stat-num">01</div>
+          <div class="video-stat-label">Course demo</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card reveal stagger-1">
+      <div class="video-embed-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/oejKfHzuY0k"
+          title="Course Demo 2"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="video-body">
+        <div>
+          <div class="video-type">Course Demo · 02</div>
+          <div class="video-title">eLearning Course Walkthrough</div>
+          <p class="video-desc">A second course demo highlighting a different design approach — demonstrating versatility across content types, audiences, and instructional strategies while maintaining a consistent focus on learner engagement and performance outcomes.</p>
+          <div class="video-tags">
+            <span class="tag">eLearning</span>
+            <span class="tag">Instructional Design</span>
+            <span class="tag">Course Development</span>
+            <span class="tag">Learning Strategy</span>
+          </div>
+        </div>
+        <div class="video-stat">
+          <div class="video-stat-num">02</div>
+          <div class="video-stat-label">Course demo</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer class="page-footer">
+  <span class="pf-left">Tabatha Hill · Course Demos</span>
+  <div class="pf-links">
+    <a class="pf-link" href="resources.html"><svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>Job Aids</a>
+    <a class="pf-link" href="index.html">Portfolio<svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+  </div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible')})},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Case Study 04 — Company-Wide Learning Academies · Tabatha Hill</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--sky:#dff2f8;--navy:#2323b0;--cobalt:#4444e8;--lime:#c5f580;--white:#fff;--mid:#5a5a8a;--border:rgba(35,35,176,0.12);--lime-dark:#8abf3a}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--sky);color:var(--navy);-webkit-font-smoothing:antialiased}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.stagger-1{transition-delay:0.1s}.stagger-2{transition-delay:0.2s}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;background:rgba(223,242,248,0.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand-mark{width:36px;height:36px;border-radius:10px;background:var(--navy);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;flex-shrink:0;transition:background 0.2s}
+.brand-mark::after{content:'';position:absolute;bottom:0;right:0;width:11px;height:11px;background:var(--lime);border-radius:5px 0 0 0}
+.brand-mark span{font-size:13px;font-weight:800;color:#fff;position:relative;z-index:1}
+.brand:hover .brand-mark{background:var(--cobalt)}
+.brand-name{font-size:14px;font-weight:700;color:var(--navy)}
+.back-btn{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:var(--mid);text-decoration:none;padding:7px 14px;border-radius:8px;border:1.5px solid var(--border);transition:all 0.15s}
+.back-btn:hover{border-color:var(--navy);color:var(--navy)}
+.back-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.cs-hero{padding:110px 2.5rem 5rem;max-width:900px;margin:0 auto}
+.cs-number{font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--cobalt);margin-bottom:1.25rem;display:flex;align-items:center;gap:10px}
+.cs-number::before{content:'';width:20px;height:2px;background:var(--cobalt);border-radius:2px;display:block}
+.cs-title{font-size:clamp(2.2rem,5vw,4rem);font-weight:800;line-height:1.35;letter-spacing:-0.03em;color:var(--navy);margin-bottom:1.5rem;position:relative;z-index:1;}
+.cs-title .hl{display:inline;background:var(--lime);border-radius:6px;padding:2px 8px;-webkit-box-decoration-break:clone;box-decoration-break:clone;color:var(--navy);}
+.cs-chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:2.5rem}
+.chip{font-family:'Space Mono',monospace;font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:5px 12px;border-radius:100px;border:1px solid var(--border);color:var(--mid);background:var(--white)}
+.cs-summary{font-size:18px;font-weight:300;color:var(--mid);line-height:1.8;max-width:680px;border-left:3px solid var(--lime-dark);padding-left:1.5rem}
+.cs-body{max-width:900px;margin:0 auto;padding:0 2.5rem 6rem;display:flex;flex-direction:column;gap:3rem}
+.cs-section{background:var(--white);border-radius:16px;padding:2.5rem;border:1px solid var(--border)}
+.cs-section-label{font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--cobalt);margin-bottom:1.25rem;display:flex;align-items:center;gap:10px}
+.cs-section-label::before{content:'';width:16px;height:2px;background:var(--cobalt);border-radius:2px;display:block}
+.cs-section p{font-size:15px;font-weight:300;color:var(--mid);line-height:1.85;margin-bottom:0.85rem}
+.cs-section p:last-child{margin-bottom:0}
+.cs-section p strong{color:var(--navy);font-weight:600}
+.cs-list{display:flex;flex-direction:column;gap:10px;margin-top:0.5rem}
+.cs-list-item{display:flex;align-items:flex-start;gap:12px;font-size:15px;font-weight:300;color:var(--mid);line-height:1.7}
+.cs-list-item::before{content:'→';color:var(--cobalt);font-weight:700;flex-shrink:0;margin-top:1px}
+.outcomes-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-top:0.5rem}
+.outcome-item{background:var(--sky);padding:1.25rem 1.5rem;display:flex;align-items:flex-start;gap:12px;font-size:14px;font-weight:400;color:var(--navy);line-height:1.6}
+.outcome-dot{width:8px;height:8px;border-radius:50%;background:var(--lime-dark);flex-shrink:0;margin-top:5px}
+.approach-steps{display:flex;flex-direction:column;gap:1.5rem;margin-top:0.5rem}
+.approach-step{display:grid;grid-template-columns:48px 1fr;gap:1.25rem;align-items:start}
+.step-num{width:48px;height:48px;border-radius:12px;background:var(--cobalt);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:13px;font-weight:700;color:#fff;flex-shrink:0}
+.step-content h4{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:0.4rem}
+.step-content p{font-size:14px;font-weight:300;color:var(--mid);line-height:1.75}
+.demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:0.5rem}
+.demo-card{background:var(--sky);border-radius:10px;padding:1rem 1.25rem;border:1px solid var(--border)}
+.demo-card-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:3px}
+.demo-card-desc{font-size:12px;font-weight:300;color:var(--mid);line-height:1.6}
+.scale-callout{background:var(--navy);border-radius:14px;padding:2.5rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;overflow:hidden;margin-top:0.5rem}
+.scale-stat{text-align:center;padding:1.5rem 1rem}
+.scale-num{font-size:2.8rem;font-weight:800;color:var(--lime);letter-spacing:-0.04em;line-height:1;margin-bottom:6px}
+.scale-label{font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5)}
+.cs-footer{background:var(--navy);padding:1.5rem 2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.cs-footer-left{font-family:'Space Mono',monospace;font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:0.08em;text-transform:uppercase}
+.cs-footer-nav{display:flex;gap:12px}
+.cs-footer-link{font-size:13px;font-weight:600;color:rgba(255,255,255,0.5);text-decoration:none;display:flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);transition:all 0.15s}
+.cs-footer-link:hover{background:rgba(255,255,255,0.08);color:#fff}
+.cs-footer-link svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:768px){nav{padding:0 1.25rem}.cs-hero,.cs-body{padding-left:1.25rem;padding-right:1.25rem}.outcomes-grid,.demo-grid,.scale-callout{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="brand" href="index.html"><div class="brand-mark"><span>TH</span></div><span class="brand-name">Tabatha Hill</span></a>
+  <a class="back-btn" href="index.html#work"><svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>Back to portfolio</a>
+</nav>
+
+<div class="cs-hero">
+  <p class="cs-number reveal">Case Study 04</p>
+  <h1 class="cs-title reveal">Company-Wide Learning Academies<br/>at <span class="hl">Enterprise Scale</span></h1>
+  <div class="cs-chips reveal stagger-1">
+    <span class="chip">Academy Design</span><span class="chip">Enterprise L&D</span><span class="chip">Sole Contributor</span><span class="chip">Curriculum Architecture</span><span class="chip">Global Teams</span>
+  </div>
+  <p class="cs-summary reveal stagger-2">As the sole L&D professional supporting 700+ employees globally, designed and launched 4+ company-wide learning academies — building scalable curriculum infrastructure aligned to business goals and creating repeatable learning systems across roles and regions.</p>
+</div>
+
+<div class="cs-body">
+
+  <div class="cs-section reveal">
+    <p class="cs-section-label">Context & Business Need</p>
+    <p>Operating as the <strong>sole L&D professional</strong> for a global organization of 700+ employees, I faced a challenge that most L&D teams with full headcount struggle with: building learning infrastructure that could serve multiple audiences, roles, and regions — simultaneously, sustainably, and without sacrificing quality.</p>
+    <p>The business needed structured learning systems that could:</p>
+    <div class="cs-list">
+      <div class="cs-list-item">Scale across roles, teams, and geographies without requiring constant rebuilding</div>
+      <div class="cs-list-item">Align directly to business goals and performance expectations</div>
+      <div class="cs-list-item">Give employees a clear, consistent path for development regardless of their team or location</div>
+      <div class="cs-list-item">Operate efficiently without a large L&D team to maintain them</div>
+    </div>
+  </div>
+
+  <div class="cs-section reveal">
+    <p class="cs-section-label">My Role</p>
+    <p>I served as the <strong>architect, designer, and implementer</strong> of all learning academy initiatives — owning everything from stakeholder alignment and curriculum strategy to content development, launch, and ongoing iteration. With no team to delegate to, every decision required prioritization, efficiency, and a systems-thinking approach to design.</p>
+  </div>
+
+  <div class="cs-section reveal">
+    <p class="cs-section-label">Approach</p>
+    <div class="approach-steps">
+      <div class="approach-step">
+        <div class="step-num">01</div>
+        <div class="step-content"><h4>Stakeholder Alignment & Needs Discovery</h4><p>Partnered with business leaders across functions to identify capability gaps, role expectations, and strategic priorities before designing a single piece of content. Business goals drove every curriculum decision.</p></div>
+      </div>
+      <div class="approach-step">
+        <div class="step-num">02</div>
+        <div class="step-content"><h4>Academy Architecture & Curriculum Design</h4><p>Designed modular curriculum frameworks for each academy — organized by role, skill level, and learning pathway. Built for reuse and scalability so content could evolve without requiring full rebuilds.</p></div>
+      </div>
+      <div class="approach-step">
+        <div class="step-num">03</div>
+        <div class="step-content"><h4>Multi-modal Content Development</h4><p>Developed learning assets across formats — eLearning modules, microlearnings, job aids, facilitation guides, and manager resources — tailored to how each audience actually worked and learned.</p></div>
+      </div>
+      <div class="approach-step">
+        <div class="step-num">04</div>
+        <div class="step-content"><h4>Launch, Adoption & Iteration</h4><p>Managed rollout across global teams, supported adoption through manager communication plans, and built in feedback loops to continuously improve content based on learner and leader input.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-section reveal">
+    <p class="cs-section-label">Outcomes</p>
+    <div class="outcomes-grid">
+      <div class="outcome-item"><div class="outcome-dot"></div>4+ company-wide learning academies successfully launched and adopted</div>
+      <div class="outcome-item"><div class="outcome-dot"></div>Scalable curriculum infrastructure serving 700+ employees across roles and regions</div>
+      <div class="outcome-item"><div class="outcome-dot"></div>Clear, consistent development pathways regardless of team or location</div>
+      <div class="outcome-item"><div class="outcome-dot"></div>Repeatable systems that continued delivering value without constant rebuilding</div>
+      <div class="outcome-item"><div class="outcome-dot"></div>Learning programs directly aligned to business goals and performance expectations</div>
+      <div class="outcome-item"><div class="outcome-dot"></div>Demonstrated that a single L&D professional can architect enterprise-scale solutions</div>
+    </div>
+  </div>
+
+  <div class="cs-section reveal">
+    <p class="cs-section-label">What This Demonstrates</p>
+    <div class="demo-grid">
+      <div class="demo-card"><div class="demo-card-title">Enterprise L&D Strategy</div><div class="demo-card-desc">Building scalable learning systems for a global workforce as a sole contributor</div></div>
+      <div class="demo-card"><div class="demo-card-title">Curriculum Architecture</div><div class="demo-card-desc">Designing modular, reusable frameworks that grow with the organization</div></div>
+      <div class="demo-card"><div class="demo-card-title">Business Alignment</div><div class="demo-card-desc">Connecting every curriculum decision to strategic goals and performance outcomes</div></div>
+      <div class="demo-card"><div class="demo-card-title">Operational Efficiency</div><div class="demo-card-desc">Maximizing learning impact while operating lean — doing more with less</div></div>
+      <div class="demo-card"><div class="demo-card-title">Stakeholder Partnership</div><div class="demo-card-desc">Cross-functional collaboration to build shared ownership of learning initiatives</div></div>
+      <div class="demo-card"><div class="demo-card-title">Systems Thinking</div><div class="demo-card-desc">Designing for sustainability and scale, not just the immediate need</div></div>
+    </div>
+  </div>
+
+</div>
+
+<footer class="cs-footer">
+  <span class="cs-footer-left">Case Study 04 of 04</span>
+  <div class="cs-footer-nav">
+    <a class="cs-footer-link" href="case-study-3.html"><svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>Previous</a>
+    <a class="cs-footer-link" href="index.html#work">All work<svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+  </div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible')})},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
