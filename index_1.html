@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Tabatha Hill — Learning Architect & AI Learning Strategist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --sky:#dff2f8;
+  --navy:#2323b0;
+  --cobalt:#4444e8;
+  --lime:#c5f580;
+  --white:#ffffff;
+  --ink:#1a1a2e;
+  --mid:#5a5a8a;
+  --border:rgba(35,35,176,0.12);
+  --lime-dark:#8abf3a;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--sky);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.brand-name,.hero-h1,.section-h2,.svc-title,.work-title,.about-h2,.ps-title,.contact-h2,.footer-name,.stat-val,.work-stat-num{font-family:'Plus Jakarta Sans',sans-serif!important}
+
+/* ── SCROLL ANIMATIONS ── */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity 0.65s ease,transform 0.65s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-32px);transition:opacity 0.65s ease,transform 0.65s ease}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(32px);transition:opacity 0.65s ease,transform 0.65s ease}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+.stagger-1{transition-delay:0.05s}
+.stagger-2{transition-delay:0.15s}
+.stagger-3{transition-delay:0.25s}
+.stagger-4{transition-delay:0.35s}
+.stagger-5{transition-delay:0.45s}
+.stagger-6{transition-delay:0.55s}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:300;
+  height:62px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 2.5rem;
+  background:rgba(223,242,248,0.92);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand-mark{
+  width:36px;height:36px;border-radius:10px;
+  background:var(--navy);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;flex-shrink:0;
+  transition:background 0.2s,transform 0.2s;
+}
+.brand-mark::after{
+  content:'';position:absolute;bottom:0;right:0;
+  width:11px;height:11px;background:var(--lime);
+  border-radius:5px 0 0 0;
+  transition:background 0.2s;
+}
+.brand-mark span{font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:800;color:var(--white);position:relative;z-index:1}
+.brand:hover .brand-mark{background:var(--cobalt);transform:rotate(-3deg)}
+.brand:hover .brand-mark::after{background:var(--lime)}
+.brand-name{font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;color:var(--navy);letter-spacing:-0.01em}
+.nav-links{display:flex;align-items:center;gap:0.25rem;list-style:none}
+.nav-links a{
+  font-size:13px;font-weight:500;color:var(--mid);
+  text-decoration:none;padding:7px 14px;border-radius:8px;
+  transition:background 0.15s,color 0.15s;
+}
+.nav-links a:hover{background:rgba(35,35,176,0.08);color:var(--navy)}
+.nav-cta{
+  background:var(--navy)!important;color:var(--white)!important;
+  border-radius:8px!important;
+  transition:background 0.15s!important;
+}
+.nav-cta:hover{background:var(--cobalt)!important}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  padding:100px 2.5rem 4rem;
+  display:flex;flex-direction:column;justify-content:center;
+  max-width:1200px;margin:0 auto;
+  position:relative;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Space Mono',monospace;
+  font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--cobalt);margin-bottom:2.5rem;
+}
+.pulse{width:7px;height:7px;border-radius:50%;background:var(--cobalt);animation:pulse 2s ease-in-out infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.3;transform:scale(1.8)}}
+
+/* word-by-word hero headline */
+.hero-h1{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:clamp(2.8rem,6vw,5.5rem);
+  font-weight:800;line-height:1.15;
+  letter-spacing:-0.03em;
+  color:var(--navy);
+  margin-bottom:3rem;
+  position:relative;
+  z-index:1;
+}
+.hero-word{
+  display:inline-block;
+  opacity:0;transform:translateY(24px);
+  transition:opacity 0.5s ease,transform 0.5s ease;
+  margin-right:0.25em;
+}
+.hero-word.in{opacity:1;transform:translateY(0)}
+.hero-highlight{
+  display:inline;
+  position:relative;
+  margin-right:0.25em;
+  opacity:0;
+  transition:opacity 0.5s ease;
+}
+.hero-highlight::before{
+  content:'';
+  position:absolute;
+  left:-6px;right:-6px;
+  top:4px;bottom:0px;
+  background:var(--lime);
+  border-radius:8px;
+  z-index:-1;
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform 0s;
+}
+.hero-highlight.in{opacity:1;}
+.hero-highlight.in::before{
+  transform:scaleX(1);
+  transition:transform 0.55s cubic-bezier(0.16,1,0.3,1) 0.15s;
+}
+.hero-highlight span{position:relative;z-index:2;color:var(--navy)}
+
+.hero-bottom{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:4rem;align-items:start;
+}
+.hero-desc{
+  font-size:18px;font-weight:300;
+  color:var(--mid);line-height:1.8;
+  max-width:460px;
+}
+.hero-desc strong{color:var(--navy);font-weight:600}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:2rem}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:14px;font-weight:600;font-family:'Inter',sans-serif;
+  padding:13px 26px;border-radius:10px;border:none;cursor:pointer;
+  transition:all 0.18s;text-decoration:none;
+}
+.btn-primary{background:var(--navy);color:var(--white)}
+.btn-primary:hover{background:var(--cobalt);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--navy);border:2px solid var(--navy)}
+.btn-ghost:hover{background:var(--navy);color:var(--white);transform:translateY(-2px)}
+.btn svg{width:14px;height:14px;flex-shrink:0}
+
+.hero-stats{display:flex;flex-direction:column;gap:1px;background:var(--border)}
+.stat-row{
+  background:var(--white);
+  padding:1.25rem 1.5rem;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background 0.15s;
+}
+.stat-row:hover{background:rgba(108,68,232,0.08)}
+.stat-label{font-size:13px;color:var(--navy);font-weight:700}
+.stat-val{
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:1.6rem;font-weight:800;
+  color:var(--cobalt);letter-spacing:-0.03em;
+}
+.stat-val .lime{color:var(--cobalt)}
+
+/* ── HERO PHOTO ── */
+.hero-photo{display:flex;align-items:center;justify-content:center}
+.photo-placeholder{
+  width:100%;max-width:280px;aspect-ratio:3/4;
+  background:rgba(68,68,232,0.07);
+  border:2px dashed rgba(68,68,232,0.2);
+  border-radius:16px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:0.75rem;color:var(--mid);
+}
+.photo-placeholder svg{width:36px;height:36px;stroke:rgba(68,68,232,0.3)}
+.photo-placeholder span{font-size:12px;font-weight:500;color:rgba(68,68,232,0.4);letter-spacing:0.04em}
+
+/* ── STANDALONE STATS ── */
+#stats{background:var(--navy);padding:4rem 2.5rem}
+.stats-inner{max-width:1200px;margin:0 auto}
+.stats-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:rgba(255,255,255,0.1);
+}
+.stat-block{
+  background:var(--navy);
+  padding:2.5rem 2rem;
+  display:flex;flex-direction:column;gap:0.5rem;
+  transition:background 0.15s;
+}
+.stat-block:hover{background:rgba(108,68,232,0.25)}
+.stat-block-num{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:3rem;font-weight:800;
+  color:var(--lime);letter-spacing:-0.04em;line-height:1;
+}
+.stat-block-label{font-size:14px;font-weight:600;color:rgba(255,255,255,0.7)}
+.marquee{
+  background:var(--navy);
+  overflow:hidden;padding:12px 0;white-space:nowrap;
+  border-top:3px solid var(--lime);
+}
+.marquee-inner{display:inline-flex;animation:marquee 25s linear infinite}
+.marquee-item{
+  font-family:'Space Mono',monospace;
+  font-size:11px;font-weight:700;letter-spacing:0.14em;
+  text-transform:uppercase;color:rgba(255,255,255,0.7);
+  padding:0 1.75rem;flex-shrink:0;
+}
+.marquee-sep{color:var(--lime);padding:0 0.5rem;font-family:'Space Mono',monospace;font-size:11px;flex-shrink:0}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ── SECTIONS ── */
+.section{padding:6rem 2.5rem}
+.section-inner{max-width:1200px;margin:0 auto}
+.eyebrow{
+  font-family:'Space Mono',monospace;
+  font-size:11px;font-weight:700;letter-spacing:0.16em;
+  text-transform:uppercase;color:var(--cobalt);
+  display:flex;align-items:center;gap:10px;margin-bottom:0.75rem;
+}
+.eyebrow::before{content:'';width:20px;height:2px;background:var(--cobalt);border-radius:2px;display:block}
+.section-h2{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:clamp(2.2rem,4.5vw,3.5rem);
+  font-weight:800;letter-spacing:-0.03em;
+  color:var(--navy);line-height:1.05;
+  margin-bottom:3.5rem;
+}
+.section-h2 .hl{
+  background:var(--lime);border-radius:8px;
+  padding:0 10px 2px;display:inline-block;
+}
+
+/* ── SERVICES ── */
+#services{background:var(--white)}
+.services-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1.5rem;
+}
+.svc-card{
+  background:var(--sky);border-radius:16px;
+  padding:2rem;
+  transition:transform 0.2s,box-shadow 0.2s;
+  border:1.5px solid transparent;
+}
+.svc-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(35,35,176,0.1);border-color:var(--border)}
+.svc-icon{
+  width:48px;height:48px;border-radius:12px;
+  background:var(--cobalt);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:1.25rem;
+}
+.svc-icon svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.svc-title{
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:1.15rem;font-weight:800;
+  color:var(--navy);margin-bottom:0.6rem;letter-spacing:-0.02em;
+}
+.svc-desc{font-size:14px;color:var(--mid);line-height:1.75;font-weight:300}
+
+/* ── WORK TABS ── */
+.work-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:2rem}
+.work-tab{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:13px;font-weight:600;
+  padding:9px 20px;border-radius:100px;
+  border:1.5px solid var(--border);
+  background:var(--white);color:var(--mid);
+  cursor:pointer;transition:all 0.18s;
+}
+.work-tab:hover{border-color:var(--navy);color:var(--navy)}
+.work-tab.active{background:var(--navy);color:var(--white);border-color:var(--navy)}
+.chip.cat-chip{border-color:var(--cobalt);color:var(--cobalt);background:rgba(68,68,232,0.06)}
+.work-card.hidden{display:none}
+
+/* ── WORK CARDS ── */
+#work{background:var(--sky)}
+.work-list{display:flex;flex-direction:column;gap:1.5px;background:var(--border)}
+.work-card{
+  background:var(--white);
+  padding:2.25rem 2.5rem;
+  display:grid;grid-template-columns:1fr auto;
+  gap:2rem;align-items:center;
+  text-decoration:none;color:inherit;
+  position:relative;overflow:hidden;
+  transition:background 0.18s;
+}
+.work-card::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:4px;
+  background:var(--lime);transform:scaleY(0);transform-origin:bottom;
+  transition:transform 0.3s ease;
+}
+.work-card:hover{background:rgba(223,242,248,0.6)}
+.work-card:hover::before{transform:scaleY(1)}
+.work-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:0.6rem}
+.chip{
+  font-family:'Space Mono',monospace;
+  font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  padding:4px 10px;border-radius:100px;
+  border:1px solid var(--border);color:var(--mid);background:var(--sky);
+}
+.work-title{
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:1.25rem;font-weight:800;
+  color:var(--navy);letter-spacing:-0.02em;margin-bottom:0.5rem;
+}
+.work-desc{font-size:14px;color:var(--mid);line-height:1.7;font-weight:300;max-width:580px}
+.work-stat{text-align:right;flex-shrink:0}
+.work-stat-num{
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:2.2rem;font-weight:800;
+  color:var(--navy);letter-spacing:-0.03em;line-height:1;
+}
+.work-stat-num .co{color:var(--cobalt)}
+.work-stat-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid);margin-top:4px}
+.work-arrow{
+  position:absolute;top:2rem;right:2rem;
+  width:32px;height:32px;border-radius:50%;
+  background:var(--sky);border:1.5px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  transition:background 0.15s,border-color 0.15s;
+}
+.work-arrow svg{width:13px;height:13px;stroke:var(--navy);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.work-card:hover .work-arrow{background:var(--navy);border-color:var(--navy)}
+.work-card:hover .work-arrow svg{stroke:#fff}
+
+/* ── ABOUT ── */
+#about{background:var(--navy)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.about-h2{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:clamp(2.2rem,4vw,3.2rem);
+  font-weight:800;letter-spacing:-0.03em;
+  color:var(--white);line-height:1.05;margin-bottom:1.5rem;
+}
+.about-h2 .hl{background:var(--lime);color:var(--navy);border-radius:8px;padding:0 10px 2px;display:inline-block}
+.about-quote{
+  font-size:1.15rem;font-style:italic;font-weight:300;
+  color:rgba(255,255,255,0.55);line-height:1.65;
+  border-left:3px solid var(--lime);padding-left:1.25rem;
+  margin:2rem 0;
+}
+.about-body{font-size:16px;font-weight:300;color:rgba(255,255,255,0.6);line-height:1.85;margin-bottom:1.25rem}
+.about-body strong{color:var(--white);font-weight:500}
+.tools-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tool-card{
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:12px;padding:1rem 1.1rem;
+  display:flex;align-items:center;gap:10px;
+  transition:background 0.15s,border-color 0.15s;
+}
+.tool-card:hover{background:rgba(197,245,128,0.1);border-color:rgba(197,245,128,0.3)}
+.tool-icon{
+  width:34px;height:34px;border-radius:8px;
+  background:rgba(255,255,255,0.08);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.tool-icon svg{width:15px;height:15px;stroke:var(--lime);fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.tool-name{font-size:13px;font-weight:500;color:var(--white)}
+.tool-sub{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-top:2px}
+
+/* ── PROCESS ── */
+#process{background:var(--white)}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5px;background:var(--border)}
+.ps{
+  background:var(--sky);padding:2.5rem 2rem;
+  border-top:3px solid var(--cobalt);
+  transition:background 0.25s ease, transform 0.25s ease;
+}
+.ps:hover{background:rgba(68,68,232,0.08);transform:translateY(-3px)}
+.ps-num{
+  font-family:'Space Mono',monospace;font-size:11px;font-weight:700;
+  letter-spacing:0.1em;color:var(--cobalt);margin-bottom:1.25rem;
+}
+.ps-icon{
+  width:44px;height:44px;border-radius:10px;
+  background:rgba(68,68,232,0.08);
+  border:1px solid rgba(68,68,232,0.15);
+  display:flex;align-items:center;justify-content:center;margin-bottom:1.1rem;
+}
+.ps-icon svg{width:19px;height:19px;stroke:var(--cobalt);fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.ps-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.1rem;font-weight:800;color:var(--navy);margin-bottom:0.65rem;letter-spacing:-0.02em}
+.ps-desc{font-size:13px;color:var(--mid);line-height:1.75;font-weight:300}
+
+/* ── CONTACT ── */
+#contact{background:var(--sky)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.contact-h2{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:clamp(2.5rem,5vw,4.2rem);
+  font-weight:800;letter-spacing:-0.04em;
+  color:var(--navy);line-height:0.95;margin-bottom:1.5rem;
+}
+.contact-h2 .hl{background:var(--lime);border-radius:8px;padding:0 10px 2px;display:inline-block}
+.contact-sub{font-size:16px;font-weight:300;color:var(--mid);line-height:1.8;max-width:380px}
+.avail{
+  display:inline-flex;align-items:center;gap:8px;margin-bottom:2rem;
+  font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--cobalt);
+}
+.avail-dot{width:8px;height:8px;border-radius:50%;background:var(--lime-dark);animation:pulse 2s ease-in-out infinite}
+.contact-form{display:flex;flex-direction:column;gap:12px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--mid)}
+.field input,.field textarea{
+  font-family:'Inter',sans-serif;font-size:14px;color:var(--navy);
+  background:var(--white);border:2px solid transparent;border-radius:10px;
+  padding:11px 14px;outline:none;resize:none;
+  transition:border-color 0.15s;
+  box-shadow:0 1px 3px rgba(35,35,176,0.08);
+}
+.field input:focus,.field textarea:focus{border-color:var(--cobalt)}
+.field.full{grid-column:1/-1}
+.form-sub{display:flex;align-items:center;gap:12px;margin-top:4px}
+.form-note{font-size:12px;color:var(--mid)}
+.success-msg{
+  display:none;align-items:center;gap:10px;
+  background:rgba(197,245,128,0.3);border:1px solid var(--lime-dark);
+  border-radius:10px;padding:12px 16px;
+  font-size:14px;font-weight:500;color:var(--navy);
+}
+.success-msg svg{width:18px;height:18px;stroke:var(--lime-dark);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--navy);padding:1.5rem 2.5rem;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+}
+.footer-brand{display:flex;align-items:center;gap:8px;text-decoration:none}
+.footer-mark{width:26px;height:26px;border-radius:6px;background:var(--white);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;flex-shrink:0}
+.footer-mark::after{content:'';position:absolute;bottom:0;right:0;width:8px;height:8px;background:var(--lime);border-radius:3px 0 0 0}
+.footer-mark span{font-family:'Plus Jakarta Sans',sans-serif;font-size:9px;font-weight:800;color:var(--navy);position:relative;z-index:1}
+.footer-name{font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;color:rgba(255,255,255,0.4)}
+.footer-links{display:flex;gap:1.5rem}
+.footer-links a{font-size:12px;color:rgba(255,255,255,0.3);text-decoration:none;transition:color 0.15s}
+.footer-links a:hover{color:var(--white)}
+.footer-copy{font-size:11px;color:rgba(255,255,255,0.2);font-family:'Space Mono',monospace;letter-spacing:0.06em}
+
+/* ── RESPONSIVE ── */
+@media(max-width:860px){
+  nav{padding:0 1.25rem}
+  .nav-links li:not(:last-child){display:none}
+  .hero{padding:90px 1.25rem 3rem}
+  .hero-bottom{grid-template-columns:1fr}
+  .section{padding:4rem 1.25rem}
+  .services-grid{grid-template-columns:1fr}
+  .work-card{grid-template-columns:1fr}
+  .work-stat{display:none}
+  .about-grid,.contact-grid{grid-template-columns:1fr;gap:3rem}
+  .process-grid{grid-template-columns:1fr 1fr}
+  .form-row{grid-template-columns:1fr}
+  footer{flex-direction:column;align-items:flex-start;gap:1rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="brand" href="#">
+    <div class="brand-mark"><span>TH</span></div>
+    <span class="brand-name">Tabatha Hill</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-eyebrow">Learning Architect · AI Learning Strategist · Performance Consultant</div>
+  <h1 class="hero-h1" id="heroHead" aria-label="I design learning that actually works."></h1>
+  <div class="hero-bottom reveal">
+    <div style="max-width:600px">
+      <p class="hero-desc">Hi, I'm <strong>Tabatha Hill</strong> — a Learning Architect working at the intersection of learning, talent, and performance. I build experiences that change behavior with <strong>AI-powered design, data-driven strategy, and creative solutions</strong> that bridge gaps between people and performance. I partner closely with teams to align learning to business needs and bring initiatives from concept to meaningful, measurable impact.</p>
+      <div class="hero-actions">
+        <a href="#work" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          View my work
+        </a>
+        <a href="#contact" class="btn btn-ghost">Get in touch</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-inner">
+    <span class="marquee-item">Instructional Design</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Sales Enablement</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">AI-Powered Learning</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Onboarding Strategy</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Articulate 360</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">LMS Architecture</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Performance Consulting</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">eLearning Development</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Instructional Design</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Sales Enablement</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">AI-Powered Learning</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Onboarding Strategy</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Articulate 360</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">LMS Architecture</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">Performance Consulting</span><span class="marquee-sep">✦</span>
+    <span class="marquee-item">eLearning Development</span><span class="marquee-sep">✦</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="stats-inner">
+    <div class="stats-grid" style="grid-template-columns:repeat(4,1fr)">
+      <div class="stat-block reveal stagger-1">
+        <div class="stat-block-num">11+</div>
+        <div class="stat-block-label">Years of experience</div>
+      </div>
+      <div class="stat-block reveal stagger-2">
+        <div class="stat-block-num">↓25%</div>
+        <div class="stat-block-label">Reduced onboarding time</div>
+      </div>
+      <div class="stat-block reveal stagger-3">
+        <div class="stat-block-num">4+</div>
+        <div class="stat-block-label">Company-wide academies created</div>
+      </div>
+      <div class="stat-block reveal stagger-4">
+        <div class="stat-block-num">700+</div>
+        <div class="stat-block-label">Employees served as sole L&D professional</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="section-inner">
+    <h2 class="section-h2 reveal">Learning solutions<br/>that <span class="hl">move the needle</span></h2>
+    <div class="services-grid">
+      <div class="svc-card reveal stagger-1">
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+        <div class="svc-title">Curriculum Design</div>
+        <p class="svc-desc">Full learning programs built from needs analysis to final delivery — mapped to real business outcomes, not just training hours.</p>
+      </div>
+      <div class="svc-card reveal stagger-2">
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg></div>
+        <div class="svc-title">AI-Powered Learning</div>
+        <p class="svc-desc">Personalized learning paths at scale using AI authoring tools — the future of onboarding and enablement, built today.</p>
+      </div>
+      <div class="svc-card reveal stagger-3">
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <div class="svc-title">eLearning Development</div>
+        <p class="svc-desc">Interactive, scenario-based eLearning built in Articulate 360, Rise, or pure HTML — designed to engage, not just inform.</p>
+      </div>
+      <div class="svc-card reveal stagger-4">
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="svc-title">Sales Enablement</div>
+        <p class="svc-desc">Onboarding and training systems that get reps productive faster — built for retention, not just certification.</p>
+      </div>
+      <div class="svc-card reveal stagger-5">
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+        <div class="svc-title">Learning Analytics</div>
+        <p class="svc-desc">Dashboards and data frameworks that connect learning to KPIs — so you can prove the training is actually working.</p>
+      </div>
+      <div class="svc-card reveal stagger-6">
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <div class="svc-title">Performance Consulting</div>
+        <p class="svc-desc">Needs analysis and gap diagnosis before a single slide gets built — because the right solution starts with the right question.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="section" id="work">
+  <div class="section-inner">
+    <p class="eyebrow reveal">Portfolio</p>
+    <h2 class="section-h2 reveal">The <span class="hl">work</span></h2>
+
+    <!-- CATEGORY TABS -->
+    <div class="work-tabs reveal">
+      <button class="work-tab active" onclick="filterWork('all')">All</button>
+      <button class="work-tab" onclick="filterWork('case-study')">Case Studies</button>
+      <button class="work-tab" onclick="filterWork('job-aid')">Job Aids</button>
+      <button class="work-tab" onclick="filterWork('course')">Course Creation</button>
+    </div>
+
+    <div class="work-list" id="workList">
+
+      <!-- CASE STUDIES -->
+      <a class="work-card reveal" href="case-study-1.html" data-cat="case-study">
+        <div class="work-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+        <div>
+          <div class="work-chips"><span class="chip cat-chip">Case Study</span><span class="chip">Sales Enablement</span><span class="chip">Instructional Design</span></div>
+          <div class="work-title">Translating Expertise into Actionable Learning</div>
+          <p class="work-desc">As the organization scaled, Sales and Service Delivery needed consistent, role-specific enablement. I owned end-to-end translation from SME expertise to usable assets — capturing workflows, designing multi-modal content, and aligning both teams to reduce rework and accelerate ramp-up.</p>
+        </div>
+        <div class="work-stat">
+          <div class="work-stat-num"><span class="co">↓</span>SME</div>
+          <div class="work-stat-label">Reduced dependency</div>
+        </div>
+      </a>
+
+      <a class="work-card reveal stagger-1" href="case-study-2.html" data-cat="case-study">
+        <div class="work-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+        <div>
+          <div class="work-chips"><span class="chip cat-chip">Case Study</span><span class="chip">AI-Powered Learning</span><span class="chip">Manager Development</span></div>
+          <div class="work-title">AI-Powered Role Play for Manager Difficult Conversations</div>
+          <p class="work-desc">Designed and piloted AI role-play exercises embedded in a year-long microlearning series for managers — covering performance feedback, accountability, and sensitive conversations in a safe, repeatable environment that built real confidence and behavior change.</p>
+        </div>
+        <div class="work-stat">
+          <div class="work-stat-num"><span class="co">↑</span>Eng.</div>
+          <div class="work-stat-label">Manager confidence</div>
+        </div>
+      </a>
+
+      <a class="work-card reveal stagger-2" href="case-study-3.html" data-cat="case-study">
+        <div class="work-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+        <div>
+          <div class="work-chips"><span class="chip cat-chip">Case Study</span><span class="chip">Onboarding Strategy</span><span class="chip">People Ops</span></div>
+          <div class="work-title">Building Scalable Support for New Hire Success</div>
+          <p class="work-desc">Partnered with People Ops and hiring managers to design a structured onboarding framework — buddy system, 30- and 90-day check-in guides, and reflection tools — creating consistency and confidence well beyond Day 1 across a growing organization.</p>
+        </div>
+        <div class="work-stat">
+          <div class="work-stat-num"><span class="co">3</span>×</div>
+          <div class="work-stat-label">Onboarding touchpoints</div>
+        </div>
+      </a>
+
+      <a class="work-card reveal stagger-3" href="case-study-4.html" data-cat="case-study">
+        <div class="work-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+        <div>
+          <div class="work-chips"><span class="chip cat-chip">Case Study</span><span class="chip">Academy Design</span><span class="chip">Enterprise L&D</span></div>
+          <div class="work-title">Company-Wide Learning Academies at Enterprise Scale</div>
+          <p class="work-desc">As the sole L&D professional supporting 700+ employees globally, designed and launched 4+ company-wide learning academies — building scalable curriculum infrastructure aligned to business goals.</p>
+        </div>
+        <div class="work-stat">
+          <div class="work-stat-num">4<span class="co">+</span></div>
+          <div class="work-stat-label">Academies built</div>
+        </div>
+      </a>
+
+      <!-- JOB AIDS -->
+      <a class="work-card reveal" href="copy_of_leadership_academy_guide__2_.pdf" target="_blank" rel="noopener" data-cat="job-aid">
+        <div class="work-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+        <div>
+          <div class="work-chips"><span class="chip cat-chip">Job Aid</span><span class="chip">Leadership</span><span class="chip">Workbook</span></div>
+          <div class="work-title">Leadership Academy Guide</div>
+          <p class="work-desc">A comprehensive 8-section workbook supporting leaders through a structured development journey — from foundations of leadership to leading remote teams. Includes reflection prompts, goal-setting tools, and guided activities for self-directed growth.</p>
+        </div>
+        <div class="work-stat">
+          <div class="work-stat-num">8</div>
+          <div class="work-stat-label">Sections</div>
+        </div>
+      </a>
+
+      <a class="work-card reveal stagger-1" href="cognitive_load_theory-guide__1__pdf-2.pdf" target="_blank" rel="noopener" data-cat="job-aid">
+        <div class="work-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+        <div>
+          <div class="work-chips"><span class="chip cat-chip">Job Aid</span><span class="chip">Learning Science</span><span class="chip">Reference Guide</span></div>
+          <div class="work-title">Cognitive Load Theory Guide</div>
+          <p class="work-desc">A visually designed reference guide explaining Cognitive Load Theory and its direct application to instructional design — covering the three types of cognitive load and six key design principles with supporting rationale.</p>
+        </div>
+        <div class="work-stat">
+          <div class="work-stat-num">6</div>
+          <div class="work-stat-label">Design principles</div>
+        </div>
+      </a>
+
+      <!-- COURSE CREATION -->
+      <a class="work-card reveal" href="https://www.youtube.com/watch?v=Fz8VMwNJRjk" target="_blank" rel="noopener" data-cat="course">
+        <div class="work-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+        <div>
+          <div class="work-chips"><span class="chip cat-chip">Course Creation</span><span class="chip">eLearning</span><span class="chip">Interaction Design</span></div>
+          <div class="work-title">eLearning Course Demo — Video Walkthrough 01</div>
+          <p class="work-desc">A recorded walkthrough of an eLearning course demonstrating interaction design, visual storytelling, and scenario-based learning — showing how content structure, pacing, and learner engagement are built into the experience from the ground up.</p>
+        </div>
+        <div class="work-stat">
+          <div class="work-stat-num"><span class="co">▶</span></div>
+          <div class="work-stat-label">Watch demo</div>
+        </div>
+      </a>
+
+      <a class="work-card reveal stagger-1" href="https://youtu.be/oejKfHzuY0k" target="_blank" rel="noopener" data-cat="course">
+        <div class="work-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+        <div>
+          <div class="work-chips"><span class="chip cat-chip">Course Creation</span><span class="chip">eLearning</span><span class="chip">Learning Strategy</span></div>
+          <div class="work-title">eLearning Course Demo — Video Walkthrough 02</div>
+          <p class="work-desc">A second course demo highlighting a different design approach — demonstrating versatility across content types, audiences, and instructional strategies while maintaining a consistent focus on learner engagement and performance outcomes.</p>
+        </div>
+        <div class="work-stat">
+          <div class="work-stat-num"><span class="co">▶</span></div>
+          <div class="work-stat-label">Watch demo</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section" id="process" style="background:var(--white)">
+  <div class="section-inner">
+    <h2 class="section-h2 reveal">Thinking before <span class="hl">building</span></h2>
+    <div class="process-grid">
+      <div class="ps reveal stagger-1">
+        <div class="ps-num">01 — DIAGNOSE</div>
+        <div class="ps-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+        <div class="ps-title">Find the real gap</div>
+        <p class="ps-desc">I start with the actual performance problem — not the symptom. What are people doing vs. what they should be doing? That gap is where design begins.</p>
+      </div>
+      <div class="ps reveal stagger-2">
+        <div class="ps-num">02 — DESIGN</div>
+        <div class="ps-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <div class="ps-title">Map to outcomes</div>
+        <p class="ps-desc">Learning objectives mapped to business results. Right modality, right medium — eLearning, video, job aids, or AI-personalized paths.</p>
+      </div>
+      <div class="ps reveal stagger-3">
+        <div class="ps-num">03 — BUILD</div>
+        <div class="ps-icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+        <div class="ps-title">Craft the experience</div>
+        <p class="ps-desc">High-fidelity content with real scenario practice, visual storytelling, and interactions people actually want to engage with.</p>
+      </div>
+      <div class="ps reveal stagger-4">
+        <div class="ps-num">04 — MEASURE</div>
+        <div class="ps-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+        <div class="ps-title">Prove the impact</div>
+        <p class="ps-desc">Completion rates are a floor. I track behavior change, connect learning to KPIs, and report in language executives understand.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div class="reveal-left">
+        <h2 class="contact-h2">Let's build<br/>something<br/><span class="hl">worth learning.</span></h2>
+      </div>
+      <div class="reveal-right">
+        <form class="contact-form" onsubmit="handleSubmit(event)" action="https://formspree.io/f/mzdqorwj" method="POST">
+          <div class="form-row">
+            <div class="field"><label>First name</label><input type="text" placeholder="Jane" required/></div>
+            <div class="field"><label>Last name</label><input type="text" placeholder="Smith"/></div>
+          </div>
+          <div class="field full"><label>Email</label><input type="email" placeholder="jane@company.com" required/></div>
+          <div class="field full"><label>What are you working on?</label><textarea rows="4" placeholder="Tell me about your project, timeline, and goals…" required></textarea></div>
+          <div class="form-sub">
+            <button type="submit" class="btn btn-primary" id="submitBtn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Send message
+            </button>
+            <span class="form-note">Usually responds within 24h</span>
+          </div>
+          <div class="success-msg" id="successMsg">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            Got it — I'll be in touch soon!
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-brand">
+    <div class="footer-mark"><span>TH</span></div>
+    <span class="footer-name">Tabatha Hill</span>
+  </a>
+</footer>
+
+<script>
+function filterWork(cat){
+  // Update active tab
+  document.querySelectorAll('.work-tab').forEach(t=>t.classList.remove('active'));
+  event.target.classList.add('active');
+  // Show/hide cards
+  document.querySelectorAll('.work-card').forEach(card=>{
+    if(cat==='all'||card.dataset.cat===cat){
+      card.classList.remove('hidden');
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+}
+
+// ── HERO WORD-BY-WORD ANIMATION ──
+const words = [
+  {text:'I',hl:false},
+  {text:'design',hl:false},
+  {text:'learning',hl:true},
+  {text:'that',hl:false},
+  {text:'actually',hl:false},
+  {text:'works.',hl:false}
+];
+const heroHead = document.getElementById('heroHead');
+words.forEach((w,i)=>{
+  const el = document.createElement('span');
+  if(w.hl){
+    el.className = 'hero-highlight';
+    const inner = document.createElement('span');
+    inner.textContent = w.text;
+    el.appendChild(inner);
+  } else {
+    el.textContent = w.text + ' ';
+    el.className = 'hero-word';
+  }
+  heroHead.appendChild(el);
+  setTimeout(()=>el.classList.add('in'), 300 + i*130);
+});
+
+// ── SCROLL REVEAL ──
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+    }
+  });
+},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>observer.observe(el));
+
+// ── CONTACT FORM ──
+async function handleSubmit(e){
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+  const form = e.target;
+  const data = new FormData(form);
+  try {
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+    if(response.ok){
+      form.querySelector('.form-sub').style.display='none';
+      const msg = document.getElementById('successMsg');
+      msg.style.display='flex';
+      form.reset();
+    } else {
+      btn.textContent = 'Try again';
+      btn.disabled = false;
+    }
+  } catch(err){
+    btn.textContent = 'Try again';
+    btn.disabled = false;
+  }
+}
+
+// ── RESPECT REDUCED MOTION ──
+if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.hero-word,.hero-highlight').forEach(el=>{
+    el.style.opacity='1';
+    el.style.transform='none';
+    el.classList.add('visible','in');
+  });
+}
+</script>
+</body>
+</html>
