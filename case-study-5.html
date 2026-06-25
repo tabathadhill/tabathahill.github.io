@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Case Study 05 — Cybersecurity Compliance Training · Tabatha Hill</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--sky:#dff2f8;--navy:#2323b0;--cobalt:#4444e8;--lime:#c5f580;--white:#fff;--mid:#3d3d6b;--border:rgba(35,35,176,0.12);--lime-dark:#8abf3a}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--sky);color:var(--navy);-webkit-font-smoothing:antialiased}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.stagger-1{transition-delay:0.1s}.stagger-2{transition-delay:0.2s}.stagger-3{transition-delay:0.3s}.stagger-4{transition-delay:0.4s}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;background:rgba(223,242,248,0.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand-mark{width:36px;height:36px;border-radius:10px;background:var(--navy);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;flex-shrink:0;transition:background 0.2s}
+.brand-mark::after{content:'';position:absolute;bottom:0;right:0;width:11px;height:11px;background:var(--lime);border-radius:5px 0 0 0}
+.brand-mark span{font-size:13px;font-weight:800;color:#fff;position:relative;z-index:1}
+.brand:hover .brand-mark{background:var(--cobalt)}
+.brand-name{font-size:14px;font-weight:700;color:var(--navy)}
+.back-btn{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:var(--mid);text-decoration:none;padding:7px 14px;border-radius:8px;border:1.5px solid var(--border);transition:all 0.15s}
+.back-btn:hover{border-color:var(--navy);color:var(--navy)}
+.back-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* HERO */
+.cs-hero{padding:110px 2.5rem 5rem;max-width:900px;margin:0 auto}
+.cs-number{font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--cobalt);margin-bottom:1.25rem;display:flex;align-items:center;gap:10px}
+.cs-number::before{content:'';width:20px;height:2px;background:var(--cobalt);border-radius:2px;display:block}
+.cs-title{font-size:clamp(2.2rem,5vw,4rem);font-weight:800;line-height:1.35;letter-spacing:-0.03em;color:var(--navy);margin-bottom:1.5rem;position:relative;z-index:1}
+.cs-title .hl{display:inline;background:var(--lime);border-radius:6px;padding:2px 8px;-webkit-box-decoration-break:clone;box-decoration-break:clone;color:var(--navy)}
+.cs-chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:2.5rem}
+.chip{font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.04em;padding:5px 14px;border-radius:100px;border:1px solid var(--border);color:var(--navy);background:var(--white)}
+.cs-summary{font-size:18px;font-weight:400;color:var(--mid);line-height:1.8;max-width:680px;border-left:3px solid var(--lime-dark);padding-left:1.5rem}
+
+/* CONTENT */
+.cs-body{max-width:900px;margin:0 auto;padding:0 2.5rem 6rem;display:flex;flex-direction:column;gap:3rem}
+.cs-section{background:var(--white);border-radius:16px;padding:2.5rem;border:1px solid var(--border)}
+.cs-section-label{font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--cobalt);margin-bottom:1.25rem;display:flex;align-items:center;gap:10px}
+.cs-section-label::before{content:'';width:16px;height:2px;background:var(--cobalt);border-radius:2px;display:block}
+.cs-section h3{font-size:1.25rem;font-weight:800;color:var(--navy);margin-bottom:1rem;letter-spacing:-0.02em}
+.cs-section p{font-size:15px;font-weight:400;color:var(--mid);line-height:1.85;margin-bottom:0.85rem}
+.cs-section p:last-child{margin-bottom:0}
+.cs-section p strong{color:var(--navy);font-weight:600}
+.cs-list{display:flex;flex-direction:column;gap:10px;margin-top:0.5rem}
+.cs-list-item{display:flex;align-items:flex-start;gap:12px;font-size:15px;font-weight:400;color:var(--mid);line-height:1.7}
+.cs-list-item::before{content:'→';color:var(--cobalt);font-weight:700;flex-shrink:0;margin-top:1px}
+
+/* OUTCOMES GRID */
+.outcomes-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-top:0.5rem}
+.outcome-item{background:var(--sky);padding:1.25rem 1.5rem;display:flex;align-items:flex-start;gap:12px;font-size:14px;font-weight:400;color:var(--mid);line-height:1.6}
+.outcome-dot{width:8px;height:8px;border-radius:50%;background:var(--lime-dark);flex-shrink:0;margin-top:5px}
+
+/* APPROACH STEPS */
+.approach-steps{display:flex;flex-direction:column;gap:1.5rem;margin-top:0.5rem}
+.approach-step{display:grid;grid-template-columns:48px 1fr;gap:1.25rem;align-items:start}
+.step-num{width:48px;height:48px;border-radius:12px;background:var(--cobalt);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:13px;font-weight:700;color:#fff;flex-shrink:0}
+.step-content h4{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:0.4rem;letter-spacing:-0.01em}
+.step-content p{font-size:14px;font-weight:400;color:var(--mid);line-height:1.75}
+
+/* DEMONSTRATES */
+.demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:0.5rem}
+.demo-card{background:var(--sky);border-radius:10px;padding:1rem 1.25rem;border:1px solid var(--border)}
+.demo-card-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:3px}
+.demo-card-desc{font-size:12px;font-weight:400;color:var(--mid);line-height:1.6}
+
+/* NAV FOOTER */
+.cs-footer{background:var(--navy);padding:1.5rem 2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.cs-footer-left{font-family:'Space Mono',monospace;font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:0.08em;text-transform:uppercase}
+.cs-footer-nav{display:flex;gap:12px}
+.cs-footer-link{font-size:13px;font-weight:600;color:rgba(255,255,255,0.5);text-decoration:none;display:flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);transition:all 0.15s}
+.cs-footer-link:hover{background:rgba(255,255,255,0.08);color:#fff}
+.cs-footer-link svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+@media(max-width:768px){
+  nav{padding:0 1.25rem}
+  .cs-hero,.cs-body{padding-left:1.25rem;padding-right:1.25rem}
+  .outcomes-grid,.demo-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="brand" href="index.html">
+    <div class="brand-mark"><span>TH</span></div>
+    <span class="brand-name">Tabatha Hill</span>
+  </a>
+  <a class="back-btn" href="index.html#work">
+    <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    Back to portfolio
+  </a>
+</nav>
+
+<div class="cs-hero">
+  <p class="cs-number reveal">Case Study 05</p>
+  <h1 class="cs-title reveal">Cybersecurity Compliance<br/>Training <span class="hl">Program Development</span></h1>
+  <div class="cs-chips reveal stagger-1">
+    <span class="chip">Cybersecurity Awareness</span>
+    <span class="chip">NIST · FISMA · FedRAMP</span>
+    <span class="chip">SCORM Development</span>
+    <span class="chip">ISO · SOC · HITRUST</span>
+    <span class="chip">Section 508 Accessibility</span>
+    <span class="chip">SME Collaboration</span>
+  </div>
+  <p class="cs-summary reveal stagger-2">As the sole L&D professional for a global cybersecurity compliance organization, I designed, built, and continue to maintain a suite of compliance training programs — spanning Federal practice onboarding, annual security awareness, and framework-specific training for ISO, SOC, and HITRUST departments — ensuring 100+ employees are audit-ready, policy-compliant, and continuously upskilled.</p>
+</div>
+
+<div class="cs-body">
+
+  <div class="cs-section reveal">
+    <p class="cs-section-label">Context & Business Need</p>
+    <p>A fast-growing cybersecurity compliance organization needed <strong>consistent, framework-aligned training</strong> for employees working across Federal, ISO, SOC, and HITRUST practices. New hires required structured onboarding that covered both organizational processes and the specific compliance frameworks governing their work.</p>
+    <p>Existing employees needed annual refreshers that kept pace with evolving policy, regulatory updates, and emerging cybersecurity requirements — all tracked and reportable to Associate Director and Director level leadership.</p>
+    <div class="cs-list">
+      <div class="cs-list-item">Onboard 100+ Federal practice new hires to FISMA, FedRAMP, and NIST frameworks quickly and consistently</div>
+      <div class="cs-list-item">Develop required annual compliance training for ISO, SOC, and HITRUST departments</div>
+      <div class="cs-list-item">Maintain all programs yearly — incorporating policy changes, SME input, and AI-assisted content updates</div>
+      <div class="cs-list-item">Ensure Section 508 accessibility compliance across all published training materials</div>
+      <div class="cs-list-item">Track completion rates and deliver regular reporting to Associate Director and Director level leadership</div>
+      <div class="cs-list-item">Integrate a shadow project component into Federal new hire onboarding to bridge knowledge to real-world application</div>
+    </div>
+  </div>
+
+  <div class="cs-section reveal">
+    <p class="cs-section-label">My Role</p>
+    <p>I served as <strong>Sole Compliance Training Architect and Program Manager</strong> — owning the full lifecycle of each program from needs analysis and content development through annual review, accessibility compliance, LMS administration, and leadership reporting.</p>
+    <p>I collaborated with SMEs across Federal, ISO, SOC, and HITRUST practices, and leveraged AI tools to accelerate content updates and maintain program currency without sacrificing instructional quality.</p>
+  </div>
+
+  <div class="cs-section reveal">
+    <p class="cs-section-label">Approach</p>
+    <div class="approach-steps">
+      <div class="approach-step">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <h4>Federal University — New Hire Onboarding Program</h4>
+          <p>Designed and built Federal University from scratch — a multi-hour, multi-day onboarding program for Federal practice new hires covering FISMA, FedRAMP, NIST frameworks, organizational processes, and role expectations. Integrated a shadow project component to bridge knowledge to real-world application. Developed SCORM-packaged eLearning and supporting materials delivered across two days to support knowledge retention and learner readiness.</p>
+        </div>
+      </div>
+      <div class="approach-step">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <h4>Framework-Specific Compliance Training — ISO, SOC & HITRUST</h4>
+          <p>Developed required compliance training for ISO, SOC, and HITRUST departments — building both new hire required courses and annual refresher programs for existing employees. Each program was tailored to the specific framework requirements and role responsibilities of each practice area, ensuring content was accurate, applicable, and audit-ready.</p>
+        </div>
+      </div>
+      <div class="approach-step">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <h4>Annual Review Cycle with SME Collaboration & AI Integration</h4>
+          <p>Established a yearly content review process — partnering with SMEs across each compliance practice to validate accuracy, incorporate regulatory updates, and apply policy changes. Integrated AI tools to accelerate content revision workflows, identify gaps, and maintain program currency without sacrificing instructional quality.</p>
+        </div>
+      </div>
+      <div class="approach-step">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <h4>Section 508 Accessibility Compliance</h4>
+          <p>Applied Section 508 accessibility standards to all training materials prior to publishing — reviewing content for compliance, resolving identified issues, and ensuring all learners across the organization could access and complete required training regardless of ability.</p>
+        </div>
+      </div>
+      <div class="approach-step">
+        <div class="step-num">05</div>
+        <div class="step-content">
+          <h4>LMS Administration, Completion Tracking & Leadership Reporting</h4>
+          <p>Administered all programs within the LMS — managing assignments, tracking completion rates, enforcing required training deadlines, and generating reports for Associate Director and Director level stakeholders. Maintained consistently high completion rates by building accountability touchpoints into the program structure.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-section reveal">
+    <p class="cs-section-label">Outcomes</p>
+    <div class="outcomes-grid">
+      <div class="outcome-item"><div class="outcome-dot"></div>100+ Federal practice employees onboarded through a consistent, framework-aligned program</div>
+      <div class="outcome-item"><div class="outcome-dot"></div>High completion rates maintained across ISO, SOC, HITRUST, and Federal departments</div>
+      <div class="outcome-item"><div class="outcome-dot"></div>Audit-ready workforce equipped with current, accurate compliance knowledge</div>
+      <div class="outcome-item"><div class="outcome-dot"></div>All published training materials meet Section 508 federal accessibility standards</div>
+      <div class="outcome-item"><div class="outcome-dot"></div>Regular completion reports delivered to Associate Director and Director level leadership</div>
+      <div class="outcome-item"><div class="outcome-dot"></div>Scalable program infrastructure built to grow with the organization and adapt to annual policy changes</div>
+    </div>
+  </div>
+
+  <div class="cs-section reveal">
+    <p class="cs-section-label">What This Demonstrates</p>
+    <div class="demo-grid">
+      <div class="demo-card"><div class="demo-card-title">Cybersecurity Framework Expertise</div><div class="demo-card-desc">NIST, FISMA, FedRAMP, ISO, SOC, HITRUST — content built for compliance, not just completion</div></div>
+      <div class="demo-card"><div class="demo-card-title">SCORM Content Development</div><div class="demo-card-desc">End-to-end eLearning development packaged for LMS delivery and completion tracking</div></div>
+      <div class="demo-card"><div class="demo-card-title">Section 508 Accessibility</div><div class="demo-card-desc">Accessibility review and remediation built into every publishing workflow</div></div>
+      <div class="demo-card"><div class="demo-card-title">SME Partnership & AI Integration</div><div class="demo-card-desc">Collaborative review process combining subject matter expertise with AI-assisted content development</div></div>
+      <div class="demo-card"><div class="demo-card-title">Program Ownership at Scale</div><div class="demo-card-desc">Full lifecycle management — from build to annual review to leadership reporting</div></div>
+      <div class="demo-card"><div class="demo-card-title">Compliance Training Administration</div><div class="demo-card-desc">LMS management, completion tracking, enforcement, and stakeholder reporting</div></div>
+    </div>
+  </div>
+
+</div>
+
+<footer class="cs-footer">
+  <span class="cs-footer-left">Case Study 05 of 05</span>
+  <div class="cs-footer-nav">
+    <a class="cs-footer-link" href="index.html#work">
+      <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      All work
+    </a>
+    <a class="cs-footer-link" href="case-study-4.html">
+      <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Previous case study
+    </a>
+  </div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible')})},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
